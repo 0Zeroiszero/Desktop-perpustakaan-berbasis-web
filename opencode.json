@@ -1,0 +1,13 @@
+{
+  "mcp": {
+    "servers": {
+      "inttelij-idea-mcp-local": {
+        "type": "remote",
+        "url": "http://127.0.0.1:64342/stream",
+        "headers": {
+          "IJ_MCP_SERVER_PROJECT_PATH": "E:/Tugas Kampus/Semester 3/Prak. PBO/Konversi UI Web"
+        }
+      }
+    }
+  }
+}
