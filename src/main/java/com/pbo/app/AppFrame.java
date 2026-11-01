@@ -31,7 +31,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** Jendela utama: sidebar tetap di kiri, halaman isi dapat digulir. */
 public class AppFrame extends JFrame {
@@ -42,6 +44,7 @@ public class AppFrame extends JFrame {
 
     private List<Book> books = List.of();
     private List<String> categories = List.of();
+    private final Map<String, String> shelfStatuses = new HashMap<>();
     private String userName = "Anggota";
     private boolean connected;
     private SQLException connectionError;
@@ -86,7 +89,10 @@ public class AppFrame extends JFrame {
 
     public void openCatalog() {
         if (catalogPage == null) {
-            catalogPage = new CatalogPage(books, categories, this::openDetail, this::saveToShelf);
+            catalogPage = new CatalogPage(books, categories, shelfStatuses::get,
+                    this::openDetail, this::saveToShelf);
+        } else {
+            catalogPage.refresh();
         }
         showPage(catalogPage, "Katalog Buku - PustakaDigital");
         sidebar.setActive("katalog");
@@ -99,8 +105,8 @@ public class AppFrame extends JFrame {
                         .thenComparing(Book::title, String.CASE_INSENSITIVE_ORDER))
                 .limit(3)
                 .toList();
-        BookDetailPage page = new BookDetailPage(book, otherBooks, this::openCatalog, this::openDetail,
-                this::saveToShelf, this::readBook);
+        BookDetailPage page = new BookDetailPage(book, shelfStatuses.get(book.id()), otherBooks,
+                this::openCatalog, this::openDetail, this::saveToShelf, this::readBook);
         showPage(page, "Detail Buku - PustakaDigital");
         sidebar.setActive("katalog");
     }
@@ -123,14 +129,18 @@ public class AppFrame extends JFrame {
         });
     }
 
-    private void saveToShelf(Book book) {
+    private boolean saveToShelf(Book book, String status) {
         try {
-            ShelfRepository.Result result = ShelfRepository.save(book);
-            toastLayer.showMessage(result == ShelfRepository.Result.SAVED
-                    ? "Buku \"" + book.title() + "\" disimpan ke rak " + userName + "."
-                    : "Buku \"" + book.title() + "\" sudah ada di rak " + userName + ".");
+            ShelfRepository.Result result = ShelfRepository.save(book, status);
+            shelfStatuses.put(book.id(), status);
+            toastLayer.showMessage(result == ShelfRepository.Result.ADDED
+                    ? "Buku \"" + book.title() + "\" ditambahkan ke rak " + userName
+                            + " (" + status + ")."
+                    : "Status baca \"" + book.title() + "\" diubah menjadi " + status + ".");
+            return true;
         } catch (SQLException e) {
             showDatabaseError(e);
+            return false;
         }
     }
 
@@ -155,6 +165,8 @@ public class AppFrame extends JFrame {
         try {
             books = BookRepository.findAll();
             categories = BookRepository.findCategories();
+            shelfStatuses.clear();
+            shelfStatuses.putAll(ShelfRepository.findStatuses());
             userName = ShelfRepository.currentUserName();
             connected = true;
         } catch (SQLException e) {
@@ -162,6 +174,7 @@ public class AppFrame extends JFrame {
             connectionError = e;
             books = List.of();
             categories = List.of();
+            shelfStatuses.clear();
         }
     }
 

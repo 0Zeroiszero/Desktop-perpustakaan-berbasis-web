@@ -10,6 +10,7 @@ import com.pbo.ui.components.ContentColumn;
 import com.pbo.ui.components.DetailCover;
 import com.pbo.ui.components.PagePanel;
 import com.pbo.ui.components.RoundedPanel;
+import com.pbo.ui.components.ShelfButton;
 import com.pbo.ui.components.WrappedLabel;
 
 import javax.swing.BorderFactory;
@@ -29,6 +30,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 
 /** Halaman detail buku: kartu utama berisi sampul, metadata, sinopsis, dan buku lain. */
@@ -36,8 +38,8 @@ public class BookDetailPage extends PagePanel {
 
     private final Book book;
 
-    public BookDetailPage(Book book, List<Book> otherBooks, Runnable onBack,
-                          Consumer<Book> onOpenBook, Consumer<Book> onSaveBook,
+    public BookDetailPage(Book book, String shelfStatus, List<Book> otherBooks, Runnable onBack,
+                          Consumer<Book> onOpenBook, BiPredicate<Book, String> onSaveBook,
                           Consumer<Book> onReadBook) {
         this.book = book;
 
@@ -48,7 +50,7 @@ public class BookDetailPage extends PagePanel {
 
         column.add(navigation(onBack));
         column.add(Box.createVerticalStrut(16));
-        column.add(detailCard(onSaveBook, onReadBook));
+        column.add(detailCard(shelfStatus, onSaveBook, onReadBook));
 
         if (!otherBooks.isEmpty()) {
             column.add(Box.createVerticalStrut(24));
@@ -79,7 +81,8 @@ public class BookDetailPage extends PagePanel {
         return row;
     }
 
-    private JPanel detailCard(Consumer<Book> onSaveBook, Consumer<Book> onReadBook) {
+    private JPanel detailCard(String shelfStatus, BiPredicate<Book, String> onSaveBook,
+                              Consumer<Book> onReadBook) {
         RoundedPanel card = new RoundedPanel(Theme.WHITE, 16, Theme.BORDER);
         card.setLayout(new BorderLayout(28, 0));
         card.setBorder(new EmptyBorder(24, 24, 24, 24));
@@ -89,11 +92,12 @@ public class BookDetailPage extends PagePanel {
         coverWrapper.setOpaque(false);
         coverWrapper.add(new DetailCover(book.cover()));
         card.add(coverWrapper, BorderLayout.WEST);
-        card.add(infoPanel(onSaveBook, onReadBook), BorderLayout.CENTER);
+        card.add(infoPanel(shelfStatus, onSaveBook, onReadBook), BorderLayout.CENTER);
         return card;
     }
 
-    private JPanel infoPanel(Consumer<Book> onSaveBook, Consumer<Book> onReadBook) {
+    private JPanel infoPanel(String shelfStatus, BiPredicate<Book, String> onSaveBook,
+                             Consumer<Book> onReadBook) {
         JPanel info = new JPanel();
         info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
         info.setOpaque(false);
@@ -175,8 +179,8 @@ public class BookDetailPage extends PagePanel {
         AppButton read = new AppButton("Baca Buku", AppButton.Style.GREEN, "book", 42);
         read.addActionListener(e -> onReadBook.accept(book));
 
-        AppButton save = new AppButton("Simpan ke Rak", AppButton.Style.BLUE, "bookmark-plus", 42);
-        save.addActionListener(e -> onSaveBook.accept(book));
+        ShelfButton save = new ShelfButton(shelfStatus,
+                status -> onSaveBook.test(book, status), 42);
 
         JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
         actions.setOpaque(false);
@@ -212,7 +216,7 @@ public class BookDetailPage extends PagePanel {
         title.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         WrappedLabel body = new WrappedLabel(
-                "Gunakan Baca Buku untuk membuka berkas, atau Simpan ke Rak untuk membaca nanti.",
+                "Gunakan Baca Buku untuk membuka berkas, atau Tambah ke rak untuk membaca nanti.",
                 430, 17);
         body.setFont(Theme.font(Font.PLAIN, 12f));
         body.setForeground(Theme.GRAY);

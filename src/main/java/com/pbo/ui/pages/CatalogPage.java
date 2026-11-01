@@ -34,7 +34,9 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 /** Halaman katalog: header ringkas, filter multi-kategori, dan grid kartu buku. */
 public class CatalogPage extends PagePanel {
@@ -44,7 +46,8 @@ public class CatalogPage extends PagePanel {
     private final List<Book> books;
     private final List<String> categories;
     private final Consumer<Book> onOpenDetail;
-    private final Consumer<Book> onSaveBook;
+    private final Function<String, String> shelfStatusOf;
+    private final BiPredicate<Book, String> onSaveBook;
 
     private final Set<String> selectedCategories = new LinkedHashSet<>();
     private final JPanel grid = new JPanel(new GridLayout(0, COLUMNS, 20, 20));
@@ -60,9 +63,11 @@ public class CatalogPage extends PagePanel {
     private String sort = "Judul A-Z";
 
     public CatalogPage(List<Book> books, List<String> categories,
-                       Consumer<Book> onOpenDetail, Consumer<Book> onSaveBook) {
+                       Function<String, String> shelfStatusOf, Consumer<Book> onOpenDetail,
+                       BiPredicate<Book, String> onSaveBook) {
         this.books = books;
         this.categories = categories;
+        this.shelfStatusOf = shelfStatusOf;
         this.onOpenDetail = onOpenDetail;
         this.onSaveBook = onSaveBook;
 
@@ -207,6 +212,11 @@ public class CatalogPage extends PagePanel {
         return card;
     }
 
+    /** Bangun ulang kartu agar status rak terbaru ikut tampil. */
+    public void refresh() {
+        applyFilter();
+    }
+
     private void resetFilters() {
         keyword = "";
         selectedCategories.clear();
@@ -239,7 +249,7 @@ public class CatalogPage extends PagePanel {
 
         grid.removeAll();
         for (Book book : result) {
-            grid.add(new BookCard(book, onOpenDetail, onSaveBook));
+            grid.add(new BookCard(book, shelfStatusOf.apply(book.id()), onOpenDetail, onSaveBook));
         }
         for (int i = result.size(); i < Math.max(COLUMNS, ((result.size() + COLUMNS - 1) / COLUMNS) * COLUMNS); i++) {
             JPanel filler = new JPanel();

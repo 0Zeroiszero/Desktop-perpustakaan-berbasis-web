@@ -20,6 +20,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 
 /** Kartu buku ringkas untuk grid katalog. */
@@ -27,7 +28,8 @@ public class BookCard extends JPanel {
 
     private static final int COVER_HEIGHT = 230;
 
-    public BookCard(Book book, Consumer<Book> onOpenDetail, Consumer<Book> onSaveBook) {
+    public BookCard(Book book, String shelfStatus, Consumer<Book> onOpenDetail,
+                    BiPredicate<Book, String> onSaveBook) {
         setOpaque(false);
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(0, 4, 8, 4));
@@ -76,18 +78,21 @@ public class BookCard extends JPanel {
 
         body.add(Box.createVerticalGlue());
 
-        JPanel actions = new JPanel(new BorderLayout(6, 0));
+        JPanel actions = new JPanel();
+        actions.setLayout(new BoxLayout(actions, BoxLayout.Y_AXIS));
         actions.setOpaque(false);
         actions.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         AppButton detail = new AppButton("Lihat Detail", AppButton.Style.PRIMARY, null, 36);
+        detail.setAlignmentX(Component.LEFT_ALIGNMENT);
         detail.addActionListener(e -> onOpenDetail.accept(book));
-        actions.add(detail, BorderLayout.CENTER);
+        actions.add(detail);
 
-        IconButton save = new IconButton("bookmark-plus", IconButton.Style.OUTLINE, 16, 36, 36,
-                "Simpan \"" + book.title() + "\" ke rak");
-        save.addActionListener(e -> onSaveBook.accept(book));
-        actions.add(save, BorderLayout.EAST);
+        ShelfButton save = new ShelfButton(shelfStatus,
+                status -> onSaveBook.test(book, status), 36);
+        save.setAlignmentX(Component.LEFT_ALIGNMENT);
+        actions.add(Box.createVerticalStrut(6));
+        actions.add(save);
 
         body.add(Box.createVerticalStrut(12));
         body.add(actions);
