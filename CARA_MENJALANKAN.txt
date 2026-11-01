@@ -1,0 +1,19 @@
+PustakaDigital - Aplikasi Java Swing
+====================================
+Butuh JDK 11 atau lebih baru.
+
+Cara 1 (terminal / CMD):
+  javac PustakaDigitalApp.java
+  java PustakaDigitalApp
+
+Cara 2 (IDE: NetBeans / IntelliJ / VS Code):
+  Buat project Java, masukkan file PustakaDigitalApp.java, lalu Run.
+
+Akun demo:
+  Admin : admin@gmail.com   / admin123   (Masuk sebagai: Admin)
+  User  : najwa@gmail.com   / user123    (Masuk sebagai: User)
+  User  : jichang@gmail.com / user123    (Masuk sebagai: User)
+
+Catatan:
+- Jendela bisa diperbesar (maximize); ukuran minimum 1200x700 sehingga tidak ada scroll.
+- Data dibatasi maksimal 6 buku / 6 pengguna / 6 buku di rak agar selalu muat di layar.
