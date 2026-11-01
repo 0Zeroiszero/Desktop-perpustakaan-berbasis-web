@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox styleClass="auth-root" alignment="CENTER" spacing="28"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.LoginController">
+    <padding>
+        <Insets top="28" right="32" bottom="28" left="32"/>
+    </padding>
+
+    <VBox styleClass="auth-hero" prefWidth="500" maxWidth="520" spacing="16">
+        <padding>
+            <Insets top="36" right="36" bottom="36" left="36"/>
+        </padding>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <StackPane styleClass="brand-mark" minWidth="42" minHeight="42" prefWidth="42" prefHeight="42" maxWidth="42" maxHeight="42">
+                <Label text="P" styleClass="brand-letter"/>
+            </StackPane>
+            <VBox spacing="0">
+                <Label text="PustakaDigital" styleClass="auth-hero-brand"/>
+                <Label text="Perpustakaan digital" styleClass="auth-hero-brand-sub"/>
+            </VBox>
+        </HBox>
+
+        <Region prefHeight="18"/>
+        <Label text="Baca lebih banyak,&#10;berkembang setiap hari." styleClass="auth-hero-title" wrapText="true"/>
+        <Label text="Satu tempat untuk menjelajahi koleksi, menyimpan bacaan, dan melanjutkan progres membaca Anda."
+               styleClass="auth-hero-text" wrapText="true"/>
+
+        <Region prefHeight="12"/>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="✓" styleClass="auth-feature-check"/>
+            <Label text="Katalog e-book yang tertata rapi" styleClass="auth-feature-text"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="✓" styleClass="auth-feature-check"/>
+            <Label text="Rak baca pribadi dan progres otomatis" styleClass="auth-feature-text"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="✓" styleClass="auth-feature-check"/>
+            <Label text="Pembaca PDF langsung di aplikasi" styleClass="auth-feature-text"/>
+        </HBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+        <Label text="Akses koleksi perpustakaan kapan saja." styleClass="auth-hero-note"/>
+    </VBox>
+
+    <VBox styleClass="auth-panel" prefWidth="420" maxWidth="440" spacing="10">
+        <Label text="Masuk ke akun" styleClass="auth-title"/>
+        <Label text="Gunakan email atau username yang terdaftar." styleClass="auth-subtitle" wrapText="true"/>
+
+        <Label fx:id="successLabel" styleClass="auth-success" wrapText="true"/>
+        <Label fx:id="errorLabel" styleClass="auth-error" wrapText="true"/>
+
+        <VBox spacing="5">
+            <Label text="Email atau username" styleClass="auth-field-label"/>
+            <TextField fx:id="identifierField" styleClass="auth-input" promptText="contoh@email.com atau username"
+                       onAction="#handleLogin"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Password" styleClass="auth-field-label"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <PasswordField fx:id="passwordField" styleClass="auth-input" promptText="Masukkan password"
+                               onAction="#handleLogin" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="visiblePasswordField" styleClass="auth-input" promptText="Masukkan password"
+                           onAction="#handleLogin" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="togglePasswordButton" styleClass="btn-icon btn-ghost" focusTraversable="false"/>
+            </HBox>
+        </VBox>
+
+        <Button fx:id="loginButton" text="Masuk" styleClass="btn-primary auth-button"
+                maxWidth="Infinity" defaultButton="true" onAction="#handleLogin"/>
+        <HBox alignment="CENTER" spacing="8">
+            <ProgressIndicator fx:id="loginProgress" prefWidth="18" prefHeight="18"/>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="6">
+            <Label text="Belum punya akun?" styleClass="auth-note"/>
+            <Hyperlink text="Daftar sekarang" styleClass="auth-link" onAction="#handleRegister"/>
+        </HBox>
+        <Label text="Hubungi admin perpustakaan jika Anda mengalami kendala masuk."
+               styleClass="auth-note" wrapText="true"/>
+    </VBox>
+</HBox>

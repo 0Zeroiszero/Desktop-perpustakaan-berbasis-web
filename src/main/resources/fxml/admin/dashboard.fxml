@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="dashboard-root" spacing="12"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.AdminDashboardController">
+    <HBox styleClass="welcome-banner" alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label fx:id="welcomeLabel" text="Selamat datang, Admin." styleClass="welcome-title"/>
+            <Label fx:id="welcomeSubtitle" text="Berikut ringkasan aktivitas perpustakaan hari ini."
+                   styleClass="welcome-subtitle"/>
+        </VBox>
+        <HBox spacing="8" alignment="CENTER_RIGHT">
+            <Button fx:id="addBookButton" text="Tambah Buku" styleClass="welcome-button"
+                    onAction="#handleAddBook"/>
+            <Button fx:id="manageUsersButton" text="Kelola Pengguna" styleClass="welcome-button"
+                    onAction="#handleManageUsers"/>
+            <Button fx:id="openCatalogButton" text="Lihat Katalog" styleClass="welcome-button"
+                    onAction="#handleOpenCatalog"/>
+        </HBox>
+    </HBox>
+
+    <HBox fx:id="statsRow" styleClass="stats-row" spacing="12"/>
+
+    <HBox styleClass="dashboard-lower" spacing="12" VBox.vgrow="ALWAYS">
+        <VBox styleClass="table-card" spacing="8" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="Aktivitas terbaru" styleClass="dashboard-section-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="5 aktivitas terakhir" styleClass="dashboard-section-subtitle"/>
+            </HBox>
+            <TableView fx:id="recentTable" styleClass="data-table recent-table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="userColumn" text="Pengguna" prefWidth="140"/>
+                    <TableColumn fx:id="bookColumn" text="Buku" prefWidth="210"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="progressColumn" text="Progres" prefWidth="75"/>
+                    <TableColumn fx:id="dateColumn" text="Terakhir" prefWidth="95"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox styleClass="table-card category-card" spacing="8" prefWidth="330" maxWidth="330">
+            <Label text="Distribusi kategori" styleClass="dashboard-section-title"/>
+            <Label text="Jumlah buku per kategori" styleClass="dashboard-section-subtitle"/>
+            <VBox fx:id="categoryStatsBox" spacing="8" VBox.vgrow="ALWAYS"/>
+            <VBox spacing="5">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="Rata-rata progres" styleClass="field-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="averageProgressLabel" text="0%" styleClass="category-count"/>
+                </HBox>
+                <ProgressBar fx:id="averageProgressBar" progress="0" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="form-root" spacing="10"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.AuthorFormController">
+    <padding>
+        <Insets top="18" right="20" bottom="16" left="20"/>
+    </padding>
+    <Label fx:id="formTitle" text="Tambah Penulis" styleClass="form-title"/>
+    <Label text="Lengkapi identitas penulis. Email dan negara asal bersifat opsional."
+           styleClass="form-subtitle" wrapText="true"/>
+    <Label fx:id="errorLabel" styleClass="form-error" wrapText="true"/>
+
+    <GridPane hgap="12" vgap="9">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+        </columnConstraints>
+        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="Nama depan" styleClass="field-label"/>
+            <TextField fx:id="namaDepanField" styleClass="text-field" promptText="Nama depan"/>
+        </VBox>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="Nama belakang" styleClass="field-label"/>
+            <TextField fx:id="namaBelakangField" styleClass="text-field" promptText="Nama belakang"/>
+        </VBox>
+        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label text="Email" styleClass="field-label"/>
+            <TextField fx:id="emailField" styleClass="text-field" promptText="nama@email.com"/>
+        </VBox>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Negara asal" styleClass="field-label"/>
+            <TextField fx:id="negaraField" styleClass="text-field" promptText="Contoh: Indonesia"/>
+        </VBox>
+    </GridPane>
+
+    <VBox spacing="5">
+        <Label text="Bio" styleClass="field-label"/>
+        <TextArea fx:id="bioArea" styleClass="text-area" prefRowCount="5" maxHeight="150"
+                  wrapText="true" promptText="Bio singkat penulis (opsional)"/>
+    </VBox>
+</VBox>

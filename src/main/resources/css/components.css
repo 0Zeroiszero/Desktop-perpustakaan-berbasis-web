@@ -1,0 +1,189 @@
+.book-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 13;
+    -fx-border-color: #F1F5F9;
+    -fx-border-radius: 13;
+    -fx-effect: dropshadow(gaussian, rgba(30,27,75,0.04), 12, 0, 0, 2);
+}
+
+.book-card:hover {
+    -fx-border-color: #DDD6FE;
+    -fx-effect: dropshadow(gaussian, rgba(124,58,237,0.10), 16, 0, 0, 4);
+}
+
+.book-cover {
+    -fx-background-color: #F8F5FF;
+    -fx-background-radius: 8;
+    -fx-border-color: #EDE9FE;
+    -fx-border-radius: 8;
+}
+
+.cover-placeholder-icon {
+    -fx-fill: #C4B5FD;
+}
+
+.book-card-title {
+    -fx-text-fill: #1E1B4B;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.book-card-author {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 10px;
+}
+
+.book-card-meta {
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 9.5px;
+}
+
+.book-card-progress {
+    -fx-text-fill: #7C3AED;
+    -fx-font-size: 9.5px;
+    -fx-font-weight: bold;
+}
+
+.stat-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 13;
+    -fx-border-color: #F1F5F9;
+    -fx-border-radius: 13;
+    -fx-effect: dropshadow(gaussian, rgba(30,27,75,0.035), 12, 0, 0, 2);
+}
+
+.stat-icon {
+    -fx-background-radius: 11;
+}
+
+.stat-icon-purple {
+    -fx-background-color: #EDE9FE;
+}
+
+.stat-icon-blue {
+    -fx-background-color: #E0F2FE;
+}
+
+.stat-icon-green {
+    -fx-background-color: #DCFCE7;
+}
+
+.stat-icon-red {
+    -fx-background-color: #FEE2E2;
+}
+
+.stat-icon-glyph {
+    -fx-fill: #7C3AED;
+}
+
+.stat-icon-blue .stat-icon-glyph {
+    -fx-fill: #0EA5E9;
+}
+
+.stat-icon-green .stat-icon-glyph {
+    -fx-fill: #16A34A;
+}
+
+.stat-icon-red .stat-icon-glyph {
+    -fx-fill: #EF4444;
+}
+
+.stat-value {
+    -fx-text-fill: #1E1B4B;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.stat-label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 10.5px;
+}
+
+.stat-hint {
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 9px;
+}
+
+.author-picker {
+    -fx-background-color: #FBFAFF;
+    -fx-background-radius: 10;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+}
+
+.author-check {
+    -fx-text-fill: #1E1B4B;
+    -fx-font-size: 10.5px;
+}
+
+.table-book-title {
+    -fx-text-fill: #1E1B4B;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.table-book-subtitle {
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 9.5px;
+}
+
+.table-progress-label {
+    -fx-text-fill: #7C3AED;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+}
+
+.data-table {
+    -fx-background-color: #FFFFFF;
+}
+
+.recent-table {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.recent-table .column-header-background {
+    -fx-background-color: #F8F5FF;
+    -fx-background-radius: 8;
+}
+
+.recent-table .table-row-cell {
+    -fx-cell-size: 42;
+}
+
+.cover-thumb {
+    -fx-background-color: #F8F5FF;
+    -fx-background-radius: 6;
+    -fx-border-color: #EDE9FE;
+    -fx-border-radius: 6;
+}
+
+.file-chip {
+    -fx-background-color: #F8FAFC;
+    -fx-background-radius: 9;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 9;
+    -fx-padding: 8 10 8 10;
+}
+
+.role-badge {
+    -fx-padding: 3 8 3 8;
+    -fx-background-radius: 99;
+    -fx-font-size: 9.5px;
+    -fx-font-weight: bold;
+}
+
+.progress-cell {
+    -fx-spacing: 4;
+}
+
+.table-actions {
+    -fx-spacing: 4;
+    -fx-alignment: CENTER;
+}
+
+.form-grid {
+    -fx-hgap: 12;
+    -fx-vgap: 8;
+}

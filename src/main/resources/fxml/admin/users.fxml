@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="page-root" spacing="12"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.UsersController">
+    <HBox styleClass="page-toolbar" alignment="CENTER_LEFT" spacing="10">
+        <TextField fx:id="searchField" styleClass="text-field" promptText="Cari nama, username, atau email..."
+                   prefWidth="300"/>
+        <ComboBox fx:id="roleFilterCombo" styleClass="combo-box" prefWidth="150"/>
+        <Button fx:id="refreshButton" text="Muat ulang" styleClass="btn-ghost"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="resultLabel" text="0 pengguna ditemukan" styleClass="muted"/>
+        <Button fx:id="addButton" text="Tambah Pengguna" styleClass="btn-primary" onAction="#handleAdd"/>
+    </HBox>
+
+    <TableView fx:id="table" styleClass="data-table" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Nama" prefWidth="200"/>
+            <TableColumn fx:id="usernameColumn" text="Username" prefWidth="150"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="220"/>
+            <TableColumn fx:id="roleColumn" text="Role" prefWidth="90"/>
+            <TableColumn fx:id="genderColumn" text="Gender" prefWidth="100"/>
+            <TableColumn fx:id="actionsColumn" text="Aksi" prefWidth="90"/>
+        </columns>
+    </TableView>
+
+    <HBox fx:id="paginationBox" alignment="CENTER" spacing="8"/>
+</VBox>

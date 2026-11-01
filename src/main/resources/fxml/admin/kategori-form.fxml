@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="form-root" spacing="11"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.KategoriFormController">
+    <padding>
+        <Insets top="18" right="20" bottom="16" left="20"/>
+    </padding>
+    <Label fx:id="formTitle" text="Tambah Kategori" styleClass="form-title"/>
+    <Label text="Nama kategori sebaiknya singkat dan mudah dikenali." styleClass="form-subtitle" wrapText="true"/>
+    <Label fx:id="errorLabel" styleClass="form-error" wrapText="true"/>
+
+    <VBox spacing="5">
+        <Label text="Nama kategori" styleClass="field-label"/>
+        <TextField fx:id="namaField" styleClass="text-field" promptText="Contoh: Fiksi, Sejarah, Teknologi"/>
+    </VBox>
+    <VBox spacing="5">
+        <Label text="Deskripsi" styleClass="field-label"/>
+        <TextArea fx:id="deskripsiArea" styleClass="text-area" prefRowCount="4" maxHeight="120"
+                  wrapText="true" promptText="Deskripsi singkat kategori (opsional)"/>
+    </VBox>
+</VBox>

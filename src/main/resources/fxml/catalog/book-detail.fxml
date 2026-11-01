@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="detail-root" spacing="10"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.BookDetailController">
+    <Button fx:id="backButton" text="Kembali" styleClass="btn-ghost" onAction="#handleBack"/>
+
+    <HBox styleClass="detail-main" spacing="18" VBox.vgrow="ALWAYS">
+        <VBox styleClass="detail-cover-box" spacing="8" prefWidth="210" maxWidth="210">
+            <StackPane fx:id="coverPane" styleClass="detail-cover"
+                       minWidth="180" minHeight="240" prefWidth="180" prefHeight="240"
+                       maxWidth="180" maxHeight="240"/>
+            <Label fx:id="fileStatusLabel" text="Memeriksa berkas..." styleClass="hint-label" wrapText="true"/>
+            <Label text="Berkas PDF dibaca langsung di aplikasi. Format lain tetap dapat disimpan di rak."
+                   styleClass="hint-label" wrapText="true"/>
+        </VBox>
+
+        <VBox styleClass="detail-info" spacing="8" HBox.hgrow="ALWAYS">
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label fx:id="categoryLabel" text="Kategori" styleClass="badge badge-purple"/>
+                <Label fx:id="formatLabel" text="PDF" styleClass="badge badge-blue"/>
+                <Label fx:id="statusBadge" text="Belum ada progres" styleClass="badge badge-gray"/>
+            </HBox>
+
+            <Label fx:id="titleLabel" text="Judul Buku" styleClass="detail-title" wrapText="true"/>
+            <Label fx:id="authorLabel" text="Penulis" styleClass="detail-author" wrapText="true"/>
+
+            <HBox spacing="16" alignment="CENTER_LEFT">
+                <Label fx:id="yearLabel" text="-" styleClass="detail-meta"/>
+                <Label fx:id="pagesLabel" text="-" styleClass="detail-meta"/>
+                <Label fx:id="publisherLabel" text="-" styleClass="detail-meta" wrapText="true"/>
+            </HBox>
+
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button fx:id="readButton" text="Baca Sekarang" styleClass="btn-primary"
+                        onAction="#handleRead"/>
+                <Button fx:id="shelfButton" text="Tambah ke Rak" styleClass="btn-secondary"
+                        onAction="#handleShelf"/>
+            </HBox>
+
+            <TabPane fx:id="detailTabs" styleClass="detail-tabs" tabClosingPolicy="UNAVAILABLE"
+                     prefHeight="300" VBox.vgrow="ALWAYS">
+                <Tab text="Sinopsis">
+                    <VBox spacing="8">
+                        <padding>
+                            <Insets top="12" right="12" bottom="10" left="4"/>
+                        </padding>
+                        <Label fx:id="synopsisLabel" text="Sinopsis belum tersedia." styleClass="synopsis-text"
+                               wrapText="true" maxWidth="Infinity" VBox.vgrow="ALWAYS"/>
+                        <HBox alignment="CENTER" spacing="8">
+                            <Button fx:id="synopsisPrevButton" styleClass="btn-icon btn-ghost"/>
+                            <Label fx:id="synopsisPageLabel" text="1 / 1" styleClass="pagination-page"/>
+                            <Button fx:id="synopsisNextButton" styleClass="btn-icon btn-ghost"/>
+                        </HBox>
+                    </VBox>
+                </Tab>
+                <Tab text="Informasi">
+                    <GridPane hgap="22" vgap="8">
+                        <padding>
+                            <Insets top="14" right="12" bottom="10" left="4"/>
+                        </padding>
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                        </columnConstraints>
+                        <VBox spacing="2" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label text="ISBN" styleClass="info-label"/>
+                            <Label fx:id="isbnValue" text="-" styleClass="info-value"/>
+                        </VBox>
+                        <VBox spacing="2" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label text="Penerbit" styleClass="info-label"/>
+                            <Label fx:id="publisherValue" text="-" styleClass="info-value"/>
+                        </VBox>
+                        <VBox spacing="2" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Tahun terbit" styleClass="info-label"/>
+                            <Label fx:id="yearValue" text="-" styleClass="info-value"/>
+                        </VBox>
+                        <VBox spacing="2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="Jumlah halaman" styleClass="info-label"/>
+                            <Label fx:id="pagesValue" text="-" styleClass="info-value"/>
+                        </VBox>
+                        <VBox spacing="2" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                            <Label text="Format" styleClass="info-label"/>
+                            <Label fx:id="formatValue" text="-" styleClass="info-value"/>
+                        </VBox>
+                        <VBox spacing="2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <Label text="Kategori" styleClass="info-label"/>
+                            <Label fx:id="categoryValue" text="-" styleClass="info-value"/>
+                        </VBox>
+                        <VBox spacing="2" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                            <Label text="Berkas" styleClass="info-label"/>
+                            <Label fx:id="fileValue" text="-" styleClass="info-value"/>
+                        </VBox>
+                    </GridPane>
+                </Tab>
+                <Tab text="Progres Saya">
+                    <VBox spacing="12">
+                        <padding>
+                            <Insets top="18" right="12" bottom="10" left="4"/>
+                        </padding>
+                        <ProgressBar fx:id="detailProgressBar" progress="0" maxWidth="Infinity"/>
+                        <Label fx:id="progressStatusLabel" text="0% • Belum dimulai" styleClass="detail-progress"/>
+                        <Label fx:id="progressDatesLabel" text="Mulai membaca untuk mencatat progres otomatis."
+                               styleClass="hint-label" wrapText="true"/>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Label text="Progres disimpan per akun. Membaca buku yang sama dengan akun lain tidak akan mengubah progres Anda."
+                               styleClass="hint-label" wrapText="true"/>
+                    </VBox>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </HBox>
+</VBox>

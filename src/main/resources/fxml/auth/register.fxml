@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="auth-root" alignment="CENTER" spacing="0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.RegisterController">
+    <padding>
+        <Insets top="20" right="28" bottom="20" left="28"/>
+    </padding>
+
+    <VBox styleClass="auth-panel auth-panel-wide" maxWidth="820" spacing="10">
+        <Label text="Buat akun anggota" styleClass="auth-title"/>
+        <Label text="Lengkapi data berikut untuk mulai menjelajahi koleksi perpustakaan."
+               styleClass="auth-subtitle" wrapText="true"/>
+        <Label fx:id="errorLabel" styleClass="auth-error" wrapText="true"/>
+
+        <GridPane styleClass="auth-form-grid" hgap="16" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS">
+                <Label text="Nama depan" styleClass="auth-field-label"/>
+                <TextField fx:id="namaDepanField" styleClass="auth-input" promptText="Nama depan"/>
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS">
+                <Label text="Nama belakang" styleClass="auth-field-label"/>
+                <TextField fx:id="namaBelakangField" styleClass="auth-input" promptText="Nama belakang (opsional)"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS">
+                <Label text="Username" styleClass="auth-field-label"/>
+                <TextField fx:id="usernameField" styleClass="auth-input" promptText="3-50 karakter"/>
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS">
+                <Label text="Email" styleClass="auth-field-label"/>
+                <TextField fx:id="emailField" styleClass="auth-input" promptText="nama@email.com"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.hgrow="ALWAYS">
+                <Label text="Password" styleClass="auth-field-label"/>
+                <PasswordField fx:id="passwordField" styleClass="auth-input" promptText="Minimal 8 karakter"/>
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.hgrow="ALWAYS">
+                <Label text="Konfirmasi password" styleClass="auth-field-label"/>
+                <PasswordField fx:id="confirmPasswordField" styleClass="auth-input" promptText="Ulangi password"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.hgrow="ALWAYS">
+                <Label text="Jenis kelamin" styleClass="auth-field-label"/>
+                <ComboBox fx:id="genderCombo" styleClass="auth-input" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.hgrow="ALWAYS">
+                <Label text="Nomor ponsel" styleClass="auth-field-label"/>
+                <TextField fx:id="phoneField" styleClass="auth-input" promptText="08xxxxxxxxxx (opsional)"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="4"
+                  GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
+                <Label text="Alamat" styleClass="auth-field-label"/>
+                <TextField fx:id="addressArea" styleClass="auth-input" promptText="Kota atau alamat singkat (opsional)"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                  GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
+                <Label text="Bio singkat" styleClass="auth-field-label"/>
+                <TextArea fx:id="bioArea" styleClass="auth-input" prefRowCount="2"
+                          maxHeight="58" wrapText="true" promptText="Ceritakan minat bacaan Anda (opsional)"/>
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <ProgressIndicator fx:id="registerProgress" prefWidth="18" prefHeight="18"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Hyperlink text="Sudah punya akun? Masuk" styleClass="auth-link" onAction="#handleBack"/>
+            <Button fx:id="registerButton" text="Daftar Sekarang" styleClass="btn-primary"
+                    onAction="#handleRegister"/>
+        </HBox>
+    </VBox>
+</VBox>

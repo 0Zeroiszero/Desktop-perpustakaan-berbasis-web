@@ -1,0 +1,95 @@
+.reader-root {
+    -fx-background-color: #0F172A;
+}
+
+.reader-top {
+    -fx-background-color: #1E1B4B;
+    -fx-padding: 11 18 11 18;
+    -fx-border-color: transparent transparent #312E81 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.reader-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.reader-author {
+    -fx-text-fill: #A5B4FC;
+    -fx-font-size: 9.5px;
+}
+
+.reader-page-label {
+    -fx-text-fill: #C7D2FE;
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+}
+
+.reader-page-area {
+    -fx-background-color: #0F172A;
+    -fx-padding: 18;
+}
+
+.reader-placeholder-text {
+    -fx-text-fill: #A5B4FC;
+    -fx-font-size: 11px;
+}
+
+.reader-placeholder-icon {
+    -fx-fill: #4338CA;
+}
+
+.reader-bottom {
+    -fx-background-color: #1E1B4B;
+    -fx-padding: 10 18 10 18;
+    -fx-border-color: #312E81 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.reader-button {
+    -fx-background-color: #312E81;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 7 11 7 11;
+    -fx-font-size: 10.5px;
+}
+
+.reader-button:hover {
+    -fx-background-color: #4338CA;
+}
+
+.reader-button:disabled {
+    -fx-opacity: 0.42;
+}
+
+.reader-button .icon {
+    -fx-fill: #FFFFFF;
+}
+
+.reader-slider .track {
+    -fx-background-color: #312E81;
+    -fx-pref-height: 6;
+    -fx-background-radius: 99;
+}
+
+.reader-slider .thumb {
+    -fx-background-color: #A78BFA;
+    -fx-background-radius: 99;
+}
+
+.reader-slider .thumb:hover {
+    -fx-background-color: #C4B5FD;
+}
+
+.reader-percent {
+    -fx-text-fill: #C7D2FE;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.reader-status {
+    -fx-text-fill: #818CF8;
+    -fx-font-size: 9px;
+}

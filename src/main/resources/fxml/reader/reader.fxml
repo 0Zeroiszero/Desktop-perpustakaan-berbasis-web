@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="readerRoot" styleClass="reader-root" focusTraversable="true"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.perpustakaan.controller.ReaderController">
+    <top>
+        <HBox styleClass="reader-top" alignment="CENTER_LEFT" spacing="12">
+            <Button fx:id="backButton" text="Kembali" styleClass="reader-button" onAction="#handleBack"/>
+            <VBox spacing="1">
+                <Label fx:id="bookTitleLabel" text="Memuat buku..." styleClass="reader-title"/>
+                <Label fx:id="bookAuthorLabel" text="" styleClass="reader-author"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="pageLabel" text="Halaman 1 dari 1" styleClass="reader-page-label"/>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane fx:id="pageArea" styleClass="reader-page-area">
+            <ImageView fx:id="pageImage" preserveRatio="true" smooth="true"/>
+            <Label fx:id="pagePlaceholder" text="Memuat halaman..." styleClass="reader-placeholder-text"/>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox styleClass="reader-bottom" alignment="CENTER_LEFT" spacing="10">
+            <Button fx:id="prevButton" text="Sebelumnya" styleClass="reader-button" onAction="#handlePrev"/>
+            <Button fx:id="nextButton" text="Berikutnya" styleClass="reader-button" onAction="#handleNext"/>
+            <Slider fx:id="pageSlider" styleClass="reader-slider" HBox.hgrow="ALWAYS"
+                    blockIncrement="1" snapToTicks="false"/>
+            <Label fx:id="percentLabel" text="0%" styleClass="reader-percent"/>
+            <Label fx:id="statusLabel" text="Progres tersimpan otomatis" styleClass="reader-status"/>
+        </HBox>
+    </bottom>
+</BorderPane>

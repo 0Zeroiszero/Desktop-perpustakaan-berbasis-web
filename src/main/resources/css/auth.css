@@ -1,0 +1,133 @@
+.auth-root {
+    -fx-background-color: #FBFAFF;
+}
+
+.auth-hero {
+    -fx-background-color: linear-gradient(to bottom right, #7C3AED, #4C1D95);
+    -fx-background-radius: 24;
+    -fx-effect: dropshadow(gaussian, rgba(76,29,149,0.28), 28, 0, 0, 10);
+}
+
+.auth-hero-brand {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.auth-hero-brand-sub {
+    -fx-text-fill: rgba(255,255,255,0.65);
+    -fx-font-size: 9.5px;
+}
+
+.auth-hero-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.auth-hero-text {
+    -fx-text-fill: rgba(255,255,255,0.78);
+    -fx-font-size: 12px;
+}
+
+.auth-feature-check {
+    -fx-text-fill: #DDD6FE;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.auth-feature-text {
+    -fx-text-fill: rgba(255,255,255,0.86);
+    -fx-font-size: 11px;
+}
+
+.auth-hero-note {
+    -fx-text-fill: rgba(255,255,255,0.58);
+    -fx-font-size: 9.5px;
+}
+
+.auth-panel {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 24;
+    -fx-padding: 32;
+    -fx-effect: dropshadow(gaussian, rgba(30,27,75,0.10), 28, 0, 0, 8);
+}
+
+.auth-panel-wide {
+    -fx-padding: 24 28 20 28;
+}
+
+.auth-title {
+    -fx-text-fill: #1E1B4B;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+}
+
+.auth-subtitle {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 11px;
+}
+
+.auth-field-label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+}
+
+.auth-input {
+    -fx-background-color: #F8FAFC;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+    -fx-padding: 9 11 9 11;
+    -fx-font-size: 11.5px;
+}
+
+.auth-input:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #7C3AED;
+}
+
+.auth-button {
+    -fx-padding: 10 16 10 16;
+    -fx-font-size: 12px;
+}
+
+.auth-link {
+    -fx-text-fill: #7C3AED;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.auth-note {
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 9.5px;
+}
+
+.auth-error {
+    -fx-background-color: #FEF2F2;
+    -fx-text-fill: #EF4444;
+    -fx-background-radius: 8;
+    -fx-padding: 8 10 8 10;
+    -fx-font-size: 10.5px;
+}
+
+.auth-success {
+    -fx-background-color: #F0FDF4;
+    -fx-text-fill: #16A34A;
+    -fx-background-radius: 8;
+    -fx-padding: 8 10 8 10;
+    -fx-font-size: 10.5px;
+}
+
+.auth-form-grid {
+    -fx-padding: 2 0 2 0;
+}
+
+.auth-panel-wide .text-area {
+    -fx-padding: 2;
+}
+
+.auth-panel-wide .text-area .content {
+    -fx-padding: 5 8 5 8;
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="form-root" spacing="9"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.UserFormController">
+    <padding>
+        <Insets top="16" right="20" bottom="14" left="20"/>
+    </padding>
+    <Label fx:id="formTitle" text="Tambah Pengguna" styleClass="form-title"/>
+    <Label fx:id="passwordHint" text="Password minimal 8 karakter." styleClass="form-subtitle" wrapText="true"/>
+    <Label fx:id="errorLabel" styleClass="form-error" wrapText="true"/>
+
+    <GridPane hgap="12" vgap="8">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+        </columnConstraints>
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="Nama depan" styleClass="field-label"/>
+            <TextField fx:id="namaDepanField" styleClass="text-field" promptText="Nama depan"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="Nama belakang" styleClass="field-label"/>
+            <TextField fx:id="namaBelakangField" styleClass="text-field" promptText="Nama belakang"/>
+        </VBox>
+
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label text="Username" styleClass="field-label"/>
+            <TextField fx:id="usernameField" styleClass="text-field" promptText="Username unik"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Email" styleClass="field-label"/>
+            <TextField fx:id="emailField" styleClass="text-field" promptText="nama@email.com"/>
+        </VBox>
+
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <Label text="Password baru" styleClass="field-label"/>
+            <PasswordField fx:id="passwordField" styleClass="text-field" promptText="Minimal 8 karakter"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label text="Konfirmasi password" styleClass="field-label"/>
+            <PasswordField fx:id="confirmPasswordField" styleClass="text-field" promptText="Ulangi password"/>
+        </VBox>
+
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <Label text="Role" styleClass="field-label"/>
+            <ComboBox fx:id="roleCombo" styleClass="combo-box" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label text="Jenis kelamin" styleClass="field-label"/>
+            <ComboBox fx:id="genderCombo" styleClass="combo-box" maxWidth="Infinity"/>
+        </VBox>
+
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="4">
+            <Label text="Nomor ponsel" styleClass="field-label"/>
+            <TextField fx:id="phoneField" styleClass="text-field" promptText="08xxxxxxxxxx"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label text="Alamat" styleClass="field-label"/>
+            <TextField fx:id="addressField" styleClass="text-field" promptText="Kota atau alamat singkat"/>
+        </VBox>
+
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+            <Label text="Bio" styleClass="field-label"/>
+            <TextArea fx:id="bioArea" styleClass="text-area" prefRowCount="2" maxHeight="58"
+                      wrapText="true" promptText="Bio singkat (opsional)"/>
+        </VBox>
+    </GridPane>
+</VBox>

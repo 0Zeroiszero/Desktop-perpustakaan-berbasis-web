@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="page-root" spacing="12"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.CatalogController">
+    <HBox styleClass="page-toolbar" alignment="CENTER_LEFT" spacing="8">
+        <TextField fx:id="searchField" styleClass="text-field" promptText="Cari judul, penulis, atau ISBN..."
+                   prefWidth="280"/>
+        <ComboBox fx:id="categoryCombo" styleClass="combo-box" prefWidth="160"/>
+        <ComboBox fx:id="formatCombo" styleClass="combo-box" prefWidth="130"/>
+        <ComboBox fx:id="sortCombo" styleClass="combo-box" prefWidth="135"/>
+        <Button fx:id="resetButton" text="Reset" styleClass="btn-ghost"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="resultLabel" text="0 buku ditemukan" styleClass="muted"/>
+    </HBox>
+
+    <GridPane fx:id="bookGrid" styleClass="catalog-grid" hgap="12" vgap="12" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="25" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="25" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="25" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="25" hgrow="ALWAYS"/>
+        </columnConstraints>
+    </GridPane>
+
+    <HBox fx:id="paginationBox" alignment="CENTER" spacing="8"/>
+</VBox>
