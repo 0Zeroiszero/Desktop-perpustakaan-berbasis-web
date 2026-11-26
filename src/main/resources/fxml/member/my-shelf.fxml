@@ -32,7 +32,7 @@
             <TableColumn fx:id="progressColumn" text="Progres" prefWidth="120" style="-fx-alignment: CENTER;"/>
             <TableColumn fx:id="statusColumn" text="Status" prefWidth="120" style="-fx-alignment: CENTER;"/>
             <TableColumn fx:id="lastReadColumn" text="Terakhir" prefWidth="100" style="-fx-alignment: CENTER;"/>
-            <TableColumn fx:id="actionsColumn" text="Aksi" prefWidth="120" style="-fx-alignment: CENTER;"/>
+            <TableColumn fx:id="actionsColumn" text="Aksi" prefWidth="170" style="-fx-alignment: CENTER;"/>
         </columns>
     </TableView>
 

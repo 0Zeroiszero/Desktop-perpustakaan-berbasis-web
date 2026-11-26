@@ -20,7 +20,8 @@
             <VBox spacing="1">
                 <HBox spacing="8" alignment="CENTER_LEFT">
                     <Label fx:id="bookTitleLabel" text="Memuat buku..." styleClass="reader-title"/>
-                    <Label fx:id="statusLabel" text="" styleClass="badge badge-purple"/>
+                    <Label fx:id="statusLabel" text="" styleClass="badge badge-purple"
+                           style="-fx-background-color: #7C3AED; -fx-text-fill: #FFFFFF; -fx-background-radius: 99; -fx-padding: 3 8 3 8;"/>
                 </HBox>
                 <Label fx:id="bookAuthorLabel" text="" styleClass="reader-author"/>
             </VBox>

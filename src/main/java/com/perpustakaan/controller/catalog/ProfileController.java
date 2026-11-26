@@ -3,10 +3,11 @@ package com.perpustakaan.controller.catalog;
 import com.perpustakaan.model.BookListItem;
 import com.perpustakaan.service.ProfileService;
 import com.perpustakaan.util.FormatUtil;
-import com.perpustakaan.view.BookCard;
-import com.perpustakaan.view.Route;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
@@ -35,9 +36,17 @@ public class ProfileController {
             return;
         }
         for (BookListItem item : info.books()) {
-            booksBox.getChildren().add(new BookCard(item, "Lihat detail",
-                    selected -> com.perpustakaan.view.Ui.navigate(Route.BOOK_DETAIL,
-                            com.perpustakaan.view.NavigationContext.book(selected.idBook(), Route.CATALOG, false))));
+            Label name = new Label("• " + item.judul());
+            name.getStyleClass().add("summary-name");
+            name.setMaxWidth(320);
+            name.setTextOverrun(javafx.scene.control.OverrunStyle.ELLIPSIS);
+            Region spacer = new Region();
+            HBox.setHgrow(spacer, Priority.ALWAYS);
+            Label meta = new Label(FormatUtil.year(item.tahunTerbit()));
+            meta.getStyleClass().add("summary-count");
+            HBox row = new HBox(8, name, spacer, meta);
+            row.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+            booksBox.getChildren().add(row);
         }
     }
 }
