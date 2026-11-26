@@ -19,6 +19,7 @@ export type DocSection = {
   bullets?: string[];
   entries?: CodeEntry[];
   table?: { head: string[]; rows: string[][] };
+  diagram?: string;
 };
 
 const REPO = 'https://github.com/0Zeroiszero/Desktop-perpustakaan-berbasis-web/blob/main/';
@@ -49,6 +50,30 @@ export const sections: DocSection[] = [
     paragraphs: [
       'Aplikasi dibuka langsung ke halaman login. Tidak ada halaman beranda publik. Setelah login, jendela utama memuat sidebar dan area konten.',
     ],
+    bullets: [
+      'Entry point ada di src/main/java/com/perpustakaan/Main.java. Kelas Launcher dipakai saat aplikasi dijalankan dari JAR.',
+      'Navigasi halaman ada di view/RootNavigator.java dan daftar rute ada di view/Route.java.',
+      'Login ada di controller/auth/LoginController.java dengan aturan di service/AuthService.java.',
+      'Shell utama ada di controller/shell/MainShellController.java.',
+      'Katalog dan detail ada di controller/catalog. Reader ada di controller/reader/ReaderController.java dengan service/PdfService.java.',
+      'Rak baca ada di controller/member/MyShelfController.java dengan aturan di service/ReadingProgressService.java.',
+      'Semua query SQL ada di folder repository. Controller tidak menulis SQL.',
+    ],
+    diagram: `flowchart TD
+    A["Main.start()"] --> B["AppPaths.ensureDirectories()"]
+    B --> C["DatabaseConnection.testConnection()"]
+    C --> D["RootNavigator.start()"]
+    D --> E["Route.LOGIN"]
+    E --> F["LoginController"]
+    F -->|"berhasil"| G["MainShellController"]
+    G --> H["Dashboard"]
+    G --> I["Katalog Buku"]
+    I --> J["Detail Buku"]
+    J --> K["Reader"]
+    J --> L["Rak Saya"]
+    K --> M["saveProgress()"]
+    L --> M
+    M --> N["reading_progress"]`,
     steps: [
       {
         title: 'Menjalankan aplikasi',

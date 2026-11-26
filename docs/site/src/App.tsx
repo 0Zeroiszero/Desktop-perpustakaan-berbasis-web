@@ -21,7 +21,10 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CodeBlock from './components/CodeBlock';
+import MermaidDiagram from './components/MermaidDiagram';
 import UiMark from './components/UiMark';
 import { sections } from './data/content';
 
@@ -70,37 +73,37 @@ export default function App() {
   const theme = useTheme();
   const desktop = useMediaQuery(theme.breakpoints.up('md'));
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [active, setActive] = useState(sections[0].id);
+  const [index, setIndex] = useState(0);
+  const section = sections[index];
+  const previous = sections[index - 1];
+  const next = sections[index + 1];
 
-  const goTo = (id: string) => {
-    setActive(id);
+  const goTo = (target: number) => {
+    setIndex(target);
     setDrawerOpen(false);
-    const target = document.getElementById(id);
-    if (target) {
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
-    }
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   };
 
   const drawer = (
     <div>
       <Toolbar />
       <List aria-label="Daftar bagian dokumentasi">
-        {sections.map((section) => (
+        {sections.map((item, itemIndex) => (
           <ListItemButton
-            key={section.id}
-            selected={active === section.id}
-            onClick={() => goTo(section.id)}
-            aria-current={active === section.id ? 'page' : undefined}
+            key={item.id}
+            selected={index === itemIndex}
+            onClick={() => goTo(itemIndex)}
+            aria-current={index === itemIndex ? 'page' : undefined}
           >
-            <ListItemText primary={section.label} />
+            <ListItemText primary={item.label} />
           </ListItemButton>
         ))}
       </List>
       <Divider sx={{ my: 1 }} />
       <Box sx={{ px: 2 }}>
         <Typography variant="caption" color="text.secondary">
-          Versi dokumentasi mengikuti branch main.
+          Bagian {index + 1} dari {sections.length}.
         </Typography>
       </Box>
     </div>
@@ -126,6 +129,7 @@ export default function App() {
           </Typography>
           <Button
             color="inherit"
+            size="small"
             component="a"
             href="https://github.com/0Zeroiszero/Desktop-perpustakaan-berbasis-web"
             target="_blank"
@@ -151,113 +155,148 @@ export default function App() {
           {drawer}
         </Drawer>
 
-        <Box component="main" sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
+        <Box component="main" sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, sm: 3, md: 4 } }}>
           <Toolbar />
           <Container maxWidth="md" disableGutters>
+            <Typography variant="overline" color="primary" sx={{ fontWeight: 700 }}>
+              Bagian {index + 1} / {sections.length}
+            </Typography>
             <Typography variant="h1" gutterBottom>
-              Dokumentasi PustakaDigital Desktop
+              {section.title}
             </Typography>
-            <Typography variant="body1" color="text.secondary" component="p" sx={{ mb: 2 }}>
-              Alur kerja, peta kode, aturan data, dan panduan pemakaian aplikasi. Istilah yang tampil di antarmuka diberi penanda ungu.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
+              Istilah yang tampil di antarmuka aplikasi diberi penanda ungu.
             </Typography>
 
-            <Stack spacing={6} sx={{ mt: 5 }}>
-              {sections.map((section) => (
-                <Box component="section" key={section.id} id={section.id} sx={{ scrollMarginTop: 88 }}>
-                  <Typography variant="h2" gutterBottom>
-                    {section.title}
+            {section.paragraphs.map((paragraph, paragraphIndex) => (
+              <Typography key={paragraphIndex} variant="body1" component="p" sx={{ mb: 2 }}>
+                {marked(paragraph)}
+              </Typography>
+            ))}
+
+            {section.diagram && (
+              <Box sx={{ my: 3 }}>
+                <Typography variant="h3" gutterBottom>
+                  Diagram alur
+                </Typography>
+                <MermaidDiagram chart={section.diagram} />
+              </Box>
+            )}
+
+            {section.steps && (
+              <Stack spacing={2} sx={{ mt: 3 }}>
+                {section.steps.map((step, stepIndex) => (
+                  <Box
+                    key={step.title}
+                    sx={{
+                      display: 'flex',
+                      gap: 2,
+                      p: 2,
+                      borderRadius: 2,
+                      bgcolor: 'background.paper',
+                      border: '1px solid',
+                      borderColor: 'divider',
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 28,
+                        height: 28,
+                        flexShrink: 0,
+                        borderRadius: '50%',
+                        bgcolor: '#EDE9FE',
+                        color: '#5B21B6',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontWeight: 700,
+                        fontSize: 13,
+                      }}
+                    >
+                      {stepIndex + 1}
+                    </Box>
+                    <Box sx={{ minWidth: 0 }}>
+                      <Typography variant="h3" gutterBottom>
+                        {marked(step.title)}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {marked(step.text)}
+                      </Typography>
+                    </Box>
+                  </Box>
+                ))}
+              </Stack>
+            )}
+
+            {section.bullets && (
+              <Box component="ul" sx={{ mt: 3, pl: 3, color: 'text.secondary' }}>
+                {section.bullets.map((bullet, bulletIndex) => (
+                  <Typography key={bulletIndex} component="li" variant="body2" sx={{ mb: 1, wordBreak: 'break-word' }}>
+                    {marked(bullet)}
                   </Typography>
+                ))}
+              </Box>
+            )}
 
-                  {section.paragraphs.map((paragraph, index) => (
-                    <Typography key={index} variant="body1" component="p" sx={{ mb: 2 }}>
-                      {marked(paragraph)}
-                    </Typography>
-                  ))}
-
-                  {section.steps && (
-                    <Stack spacing={2} sx={{ mt: 2 }}>
-                      {section.steps.map((step, index) => (
-                        <Box
-                          key={step.title}
-                          sx={{ display: 'flex', gap: 2, p: 2, borderRadius: 2, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}
-                        >
-                          <Box
-                            sx={{
-                              width: 28,
-                              height: 28,
-                              flexShrink: 0,
-                              borderRadius: '50%',
-                              bgcolor: '#EDE9FE',
-                              color: '#5B21B6',
-                              display: 'grid',
-                              placeItems: 'center',
-                              fontWeight: 700,
-                              fontSize: 13,
-                            }}
-                          >
-                            {index + 1}
-                          </Box>
-                          <Box>
-                            <Typography variant="h3" gutterBottom>
-                              {marked(step.title)}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              {marked(step.text)}
-                            </Typography>
-                          </Box>
-                        </Box>
+            {section.table && (
+              <Box sx={{ mt: 3, overflowX: 'auto', borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
+                <Table size="small">
+                  <TableHead sx={{ bgcolor: '#F1F5F9' }}>
+                    <TableRow>
+                      {section.table.head.map((cell) => (
+                        <TableCell key={cell} sx={{ fontWeight: 700 }}>
+                          {cell}
+                        </TableCell>
                       ))}
-                    </Stack>
-                  )}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {section.table.rows.map((row, rowIndex) => (
+                      <TableRow key={rowIndex}>
+                        {row.map((cell, cellIndex) => (
+                          <TableCell key={cellIndex}>{marked(cell)}</TableCell>
+                        ))}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Box>
+            )}
 
-                  {section.bullets && (
-                    <Box component="ul" sx={{ mt: 2, pl: 3, color: 'text.secondary' }}>
-                      {section.bullets.map((bullet, index) => (
-                        <Typography key={index} component="li" variant="body2" sx={{ mb: 1 }}>
-                          {marked(bullet)}
-                        </Typography>
-                      ))}
-                    </Box>
-                  )}
-
-                  {section.table && (
-                    <Box sx={{ mt: 3, overflowX: 'auto', borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
-                      <Table size="small">
-                        <TableHead sx={{ bgcolor: '#F1F5F9' }}>
-                          <TableRow>
-                            {section.table.head.map((cell) => (
-                              <TableCell key={cell} sx={{ fontWeight: 700 }}>
-                                {cell}
-                              </TableCell>
-                            ))}
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {section.table.rows.map((row, rowIndex) => (
-                            <TableRow key={rowIndex}>
-                              {row.map((cell, cellIndex) => (
-                                <TableCell key={cellIndex}>{marked(cell)}</TableCell>
-                              ))}
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </Box>
-                  )}
-
-                  {section.entries && (
-                    <Stack spacing={2} sx={{ mt: 3 }}>
-                      {section.entries.map((entry) => (
-                        <CodeBlock key={entry.symbol} entry={entry} />
-                      ))}
-                    </Stack>
-                  )}
-                </Box>
-              ))}
-            </Stack>
+            {section.entries && (
+              <Stack spacing={2} sx={{ mt: 3 }}>
+                {section.entries.map((entry) => (
+                  <CodeBlock key={entry.symbol} entry={entry} />
+                ))}
+              </Stack>
+            )}
 
             <Divider sx={{ my: 5 }} />
-            <Typography variant="body2" color="text.secondary">
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={2}
+              sx={{ justifyContent: 'space-between', alignItems: { sm: 'center' } }}
+            >
+              <Button
+                variant="outlined"
+                startIcon={<ArrowBackIcon />}
+                disabled={!previous}
+                onClick={() => previous && goTo(index - 1)}
+                fullWidth={!desktop}
+              >
+                Sebelumnya
+              </Button>
+              <Button
+                variant="contained"
+                endIcon={<ArrowForwardIcon />}
+                disabled={!next}
+                onClick={() => next && goTo(index + 1)}
+                fullWidth={!desktop}
+              >
+                {next ? `Berikutnya: ${next.label}` : 'Selesai'}
+              </Button>
+            </Stack>
+
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 5 }}>
               Sumber kode:{' '}
               <Link href="https://github.com/0Zeroiszero/Desktop-perpustakaan-berbasis-web" target="_blank" rel="noopener noreferrer">
                 Desktop-perpustakaan-berbasis-web

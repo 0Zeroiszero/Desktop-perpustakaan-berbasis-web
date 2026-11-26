@@ -8,6 +8,8 @@ import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-java';
 import { repositoryBase, type CodeEntry } from '../data/content';
 
 export default function CodeBlock({ entry }: { entry: CodeEntry }) {
@@ -21,6 +23,8 @@ export default function CodeBlock({ entry }: { entry: CodeEntry }) {
       setCopied(false);
     }
   };
+
+  const highlighted = Prism.highlight(entry.snippet, Prism.languages.java, 'java');
 
   return (
     <Box
@@ -67,7 +71,7 @@ export default function CodeBlock({ entry }: { entry: CodeEntry }) {
       <Chip
         label={entry.symbol}
         size="small"
-        sx={{ m: 2, mb: 0, alignSelf: 'flex-start', bgcolor: '#EDE9FE', color: '#5B21B6' }}
+        sx={{ m: 2, mb: 0, alignSelf: 'flex-start', bgcolor: '#EDE9FE', color: '#5B21B6', maxWidth: 'calc(100% - 32px)' }}
       />
 
       <Box
@@ -80,12 +84,13 @@ export default function CodeBlock({ entry }: { entry: CodeEntry }) {
           bgcolor: '#0F172A',
           color: '#E2E8F0',
           fontFamily: '"JetBrains Mono", monospace',
-          fontSize: 12.5,
+          fontSize: { xs: 11.5, sm: 12.5 },
           lineHeight: 1.7,
           overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
         }}
       >
-        <code>{entry.snippet}</code>
+        <code className="language-java" dangerouslySetInnerHTML={{ __html: highlighted }} />
       </Box>
 
       <Snackbar
