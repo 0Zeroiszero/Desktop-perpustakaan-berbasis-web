@@ -62,6 +62,10 @@
     -fx-fill: #7C3AED;
 }
 
+.banner-action .icon {
+    -fx-fill: #FFFFFF;
+}
+
 .btn-ghost .icon {
     -fx-fill: #6B7280;
 }

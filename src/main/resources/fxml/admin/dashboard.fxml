@@ -23,11 +23,11 @@
             <Label fx:id="welcomeLabel" text="Selamat datang, Admin." styleClass="welcome-title"/>
             <Label fx:id="welcomeSubtitle" text="Berikut ringkasan koleksi perpustakaan." styleClass="welcome-subtitle"/>
         </VBox>
-        <Button fx:id="addBookButton" text="Tambah Buku" styleClass="btn-ghost" onAction="#handleAddBook"
+        <Button fx:id="addBookButton" text="Tambah Buku" styleClass="banner-action" onAction="#handleAddBook"
                 style="-fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.30);"/>
-        <Button fx:id="manageUsersButton" text="Kelola Pengguna" styleClass="btn-ghost" onAction="#handleManageUsers"
+        <Button fx:id="manageUsersButton" text="Kelola Pengguna" styleClass="banner-action" onAction="#handleManageUsers"
                 style="-fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.30);"/>
-        <Button fx:id="openCatalogButton" text="Lihat Katalog" styleClass="btn-ghost" onAction="#handleOpenCatalog"
+        <Button fx:id="openCatalogButton" text="Lihat Katalog" styleClass="banner-action" onAction="#handleOpenCatalog"
                 style="-fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.30);"/>
     </HBox>
 
