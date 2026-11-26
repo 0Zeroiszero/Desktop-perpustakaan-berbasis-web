@@ -52,7 +52,6 @@ public class BookDetailController extends BaseController {
     @FXML private Label yearValue;
     @FXML private Label pagesValue;
     @FXML private Label categoryValue;
-    @FXML private Label fileValue;
     @FXML private ProgressBar detailProgressBar;
     @FXML private Label progressStatusLabel;
     @FXML private Label progressDatesLabel;
@@ -131,7 +130,6 @@ public class BookDetailController extends BaseController {
         yearValue.setText(FormatUtil.year(bookDetail.ebook().getTahunTerbit()));
         pagesValue.setText(FormatUtil.pages(bookDetail.ebook().getJumlahHalaman()));
         categoryValue.setText(bookDetail.kategori() == null ? "-" : bookDetail.kategori().getNamaKategori());
-        fileValue.setText(fileName(bookDetail.ebook().getFilePath()));
         applyFileState(bookDetail);
         applyShelfState(bookDetail.progress());
         applyProgress(bookDetail.progress());

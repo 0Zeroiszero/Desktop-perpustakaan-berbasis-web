@@ -15,9 +15,6 @@ public enum Route {
     MEMBER_DASHBOARD("/fxml/member/dashboard.fxml", "Dashboard", "Lanjutkan perjalanan membaca Anda.", false, true, false),
     CATALOG("/fxml/catalog/catalog.fxml", "Katalog Buku", "Jelajahi koleksi digital perpustakaan.", false, true, false),
     BOOK_DETAIL("/fxml/catalog/book-detail.fxml", "Detail Buku", "Informasi lengkap koleksi.", false, true, false),
-    AUTHOR_PROFILE("/fxml/catalog/profile.fxml", "Profil Penulis", "Karya dan identitas penulis.", false, true, false),
-    PUBLISHER_PROFILE("/fxml/catalog/profile.fxml", "Profil Penerbit", "Karya dan identitas penerbit.", false, true, false),
-    GENRE_PROFILE("/fxml/catalog/profile.fxml", "Profil Genre", "Koleksi dalam satu genre.", false, true, false),
     MY_SHELF("/fxml/member/my-shelf.fxml", "Rak Saya", "Lanjutkan bacaan dan kelola koleksi pribadi.", false, true, false),
     READER("/fxml/reader/reader.fxml", "Membaca", "", false, true, true);
 

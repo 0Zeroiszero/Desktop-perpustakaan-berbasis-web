@@ -112,15 +112,18 @@ public class CatalogController extends BaseController {
             int row = 0;
             for (BookListItem item : result.items()) {
                 String action = item.hasProgress() ? "Lanjutkan" : "Lihat detail";
-                BookCard card = new BookCard(item, action, selected -> {
-                    if (selected.hasProgress()) {
-                        Ui.navigate(Route.READER,
-                                NavigationContext.book(selected.idBook(), Route.CATALOG, false));
-                    } else {
-                        Ui.navigate(Route.BOOK_DETAIL,
-                                NavigationContext.book(selected.idBook(), Route.CATALOG, false));
-                    }
-                });
+                BookCard card = new BookCard(item, action,
+                        selected -> Ui.navigate(Route.BOOK_DETAIL,
+                                NavigationContext.book(selected.idBook(), Route.CATALOG, false)),
+                        selected -> {
+                            if (selected.hasProgress()) {
+                                Ui.navigate(Route.READER,
+                                        NavigationContext.book(selected.idBook(), Route.CATALOG, false));
+                            } else {
+                                Ui.navigate(Route.BOOK_DETAIL,
+                                        NavigationContext.book(selected.idBook(), Route.CATALOG, false));
+                            }
+                        });
                 card.setMaxWidth(Double.MAX_VALUE);
                 GridPane.setHgrow(card, Priority.ALWAYS);
                 GridPane.setVgrow(card, Priority.NEVER);

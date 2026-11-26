@@ -29,6 +29,12 @@ public class BookCard extends VBox {
     private static final double COVER_HEIGHT = 100;
 
     public BookCard(BookListItem item, String actionText, Consumer<BookListItem> onAction) {
+        this(item, actionText, onAction, onAction);
+    }
+
+    /** Klik kartu membuka detail; klik tombol aksi melakukan tindakan khusus. */
+    public BookCard(BookListItem item, String actionText, Consumer<BookListItem> onCardClick,
+                    Consumer<BookListItem> onAction) {
         getStyleClass().add("book-card");
         setSpacing(8);
         setPadding(new Insets(12));
@@ -37,7 +43,7 @@ public class BookCard extends VBox {
         setMaxHeight(180);
         setMaxWidth(Double.MAX_VALUE);
         setCursor(Cursor.HAND);
-        setOnMouseClicked(event -> onAction.accept(item));
+        setOnMouseClicked(event -> onCardClick.accept(item));
 
         HBox top = new HBox(12);
         top.setAlignment(Pos.TOP_LEFT);

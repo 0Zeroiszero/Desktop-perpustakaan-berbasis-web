@@ -94,15 +94,13 @@ public class BookFormController extends BaseController {
     }
 
     private void openProfile(AutoCompleteTextField.Suggestion suggestion) {
-        Route route = switch (suggestion.type()) {
-            case "author" -> Route.AUTHOR_PROFILE;
-            case "publisher" -> Route.PUBLISHER_PROFILE;
-            case "genre" -> Route.GENRE_PROFILE;
-            default -> null;
-        };
-        if (route != null) {
-            navigate(route, NavigationContext.profile(suggestion.id(), suggestion.type(),
-                    Route.COLLECTION_MANAGEMENT));
+        try {
+            com.perpustakaan.service.ProfileService.ProfileInfo info =
+                    app.getProfileService().load(currentUser(), suggestion.type(), suggestion.id());
+            com.perpustakaan.view.ProfileDialog.show(window(penulisField), info);
+        } catch (RuntimeException e) {
+            AppLogger.error("Gagal membuka profil.", e);
+            showError("Profil tidak dapat dibuka: " + unwrap(e).getMessage());
         }
     }
 

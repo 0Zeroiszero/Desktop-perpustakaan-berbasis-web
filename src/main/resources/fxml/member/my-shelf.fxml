@@ -27,7 +27,7 @@
 
     <TableView fx:id="table" styleClass="data-table" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="titleColumn" text="Buku" prefWidth="330" style="-fx-alignment: CENTER;"/>
+            <TableColumn fx:id="titleColumn" text="Buku" prefWidth="330" style="-fx-alignment: CENTER_LEFT;"/>
             <TableColumn fx:id="categoryColumn" text="Kategori" prefWidth="120" style="-fx-alignment: CENTER;"/>
             <TableColumn fx:id="progressColumn" text="Progres" prefWidth="120" style="-fx-alignment: CENTER;"/>
             <TableColumn fx:id="statusColumn" text="Status" prefWidth="120" style="-fx-alignment: CENTER;"/>

@@ -78,7 +78,7 @@ Halaman register hanya meminta email, nama lengkap, password, dan konfirmasi pas
 - Katalog Buku
 - Kelola Koleksi (hanya admin; berisi tab Buku, Penulis, Kategori)
 - Kelola Pengguna (hanya admin)
-- Rak Saya (hanya anggota)
+- Rak Saya (admin dan anggota)
 - Keluar
 
 ### 3.3 Katalog → Detail → Reader

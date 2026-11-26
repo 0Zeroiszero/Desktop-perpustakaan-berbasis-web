@@ -197,7 +197,7 @@ public class MyShelfController extends BaseController {
             subtitle.getStyleClass().add("table-book-subtitle");
             VBox text = new VBox(2, title, subtitle);
             HBox box = new HBox(9);
-            box.setAlignment(Pos.CENTER);
+            box.setAlignment(Pos.CENTER_LEFT);
             if (cover != null) {
                 box.getChildren().add(cover);
             } else {

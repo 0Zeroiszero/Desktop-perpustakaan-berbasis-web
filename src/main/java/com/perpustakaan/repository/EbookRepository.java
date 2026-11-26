@@ -97,9 +97,10 @@ public class EbookRepository extends RepositorySupport {
                     + "rp.last_page AS LAST_POSITION, c.status AS STATUS, "
                     + "DATE(rp.updated_at) AS LAST_READ, v.is_active AS IS_ACTIVE "
                     + "FROM v_books_catalog v "
+                    + "JOIN books b ON b.book_id = v.book_id "
                     + "LEFT JOIN reading_progress rp ON rp.book_id = v.book_id AND rp.user_id = ? "
                     + "LEFT JOIN collections c ON c.book_id = v.book_id AND c.user_id = ? "
-                    + "WHERE v." + column + " = ?" + active + " ORDER BY v.title ASC";
+                    + "WHERE b." + column + " = ?" + active + " ORDER BY v.title ASC";
             return Jdbc.queryList(connection, sql, parameters, EbookRepository::mapListItem);
         });
     }

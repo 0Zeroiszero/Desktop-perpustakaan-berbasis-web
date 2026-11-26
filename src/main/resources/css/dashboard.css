@@ -135,3 +135,14 @@
 .stats-row {
     -fx-background-color: transparent;
 }
+
+.summary-name {
+    -fx-text-fill: #1E1B4B;
+    -fx-font-size: 13px;
+}
+
+.summary-count {
+    -fx-text-fill: #7C3AED;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}

@@ -261,6 +261,17 @@ class UserScenarioTest {
             wait.play();
         }
 
+        private Button firstBookCardButton() {
+            for (Node card : root().lookupAll(".book-card")) {
+                for (Node node : card.lookupAll(".button")) {
+                    if (node instanceof Button button) {
+                        return button;
+                    }
+                }
+            }
+            return null;
+        }
+
         private Button bookCardButton(String text) {
             for (Node card : root().lookupAll(".book-card")) {
                 for (Node node : card.lookupAll(".button")) {
@@ -466,7 +477,7 @@ class UserScenarioTest {
             after(700, () -> {
                 click(button("#openCatalogButton"));
                 after(700, () -> {
-                    Button card = bookCardButton("Lihat detail");
+                    Button card = firstBookCardButton();
                     assertNotNull(card, "Kartu buku tidak ditemukan");
                     click(card);
                     after(700, () -> {

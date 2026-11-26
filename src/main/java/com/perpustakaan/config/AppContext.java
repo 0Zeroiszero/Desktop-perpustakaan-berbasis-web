@@ -68,7 +68,7 @@ public final class AppContext {
         readingProgressService = new ReadingProgressService(readingProgressRepository, ebookRepository,
                 collectionRepository, transactionManager);
         dashboardService = new DashboardService(dashboardRepository, ebookRepository, collectionRepository,
-                readingProgressRepository, config);
+                readingProgressRepository, kategoriRepository, authorRepository, publisherRepository, config);
         profileService = new ProfileService(authorRepository, publisherRepository, kategoriRepository, ebookRepository);
     }
 

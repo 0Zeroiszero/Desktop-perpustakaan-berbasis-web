@@ -18,11 +18,6 @@ public record NavigationContext(String bookId, Route origin, boolean restart, St
         return new NavigationContext(bookId, Route.BOOK_DETAIL, false, null, detailOrigin);
     }
 
-    /** Membuka halaman profil; bookId dipakai sebagai ID master, message sebagai jenisnya. */
-    public static NavigationContext profile(String id, String type, Route origin) {
-        return new NavigationContext(id, origin, false, type, null);
-    }
-
     public static NavigationContext message(String message) {
         return new NavigationContext(null, null, false, message, null);
     }

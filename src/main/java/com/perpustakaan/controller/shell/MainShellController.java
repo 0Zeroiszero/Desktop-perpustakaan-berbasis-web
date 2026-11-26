@@ -90,7 +90,7 @@ public class MainShellController extends BaseController {
         boolean admin = user.isAdmin();
         setVisibleManaged(collectionButton, admin);
         setVisibleManaged(usersButton, admin);
-        setVisibleManaged(shelfButton, !admin);
+        setVisibleManaged(shelfButton, true);
         setImmersive(false);
     }
 

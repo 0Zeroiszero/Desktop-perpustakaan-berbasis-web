@@ -96,10 +96,6 @@
                             <Label text="Kategori" styleClass="info-label"/>
                             <Label fx:id="categoryValue" text="-" styleClass="info-value"/>
                         </VBox>
-                        <VBox spacing="2" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
-                            <Label text="Berkas" styleClass="info-label"/>
-                            <Label fx:id="fileValue" text="-" styleClass="info-value"/>
-                        </VBox>
                     </GridPane>
                 </Tab>
                 <Tab text="Progres Saya">

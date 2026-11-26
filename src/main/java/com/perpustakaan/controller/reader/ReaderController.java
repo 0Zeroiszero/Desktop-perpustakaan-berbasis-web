@@ -114,6 +114,8 @@ public class ReaderController extends BaseController {
             totalPages = pdfSession.pageCount();
             bookTitleLabel.setText(detail.ebook().getJudul());
             bookAuthorLabel.setText(detail.penulis());
+            statusLabel.setText(data.progress().getStatus() == null ? ""
+                    : data.progress().getStatus().label());
             int start = context().restart() || data.progress().getLastPosition() == null
                     ? 1 : data.progress().getLastPosition();
             currentPage = clamp(start);
@@ -203,6 +205,7 @@ public class ReaderController extends BaseController {
                 progress -> {
                     String status = progress.getStatus() == null ? "-" : progress.getStatus().label();
                     statusLabel.setText(status);
+                    percentLabel.setText(progress.getProgressInt() + "%");
                 });
     }
 
@@ -225,7 +228,6 @@ public class ReaderController extends BaseController {
         pageProgress.setProgress(totalPages <= 0 ? 0 : (double) currentPage / totalPages);
         prevButton.setDisable(currentPage <= 1);
         nextButton.setDisable(totalPages <= 0 || currentPage >= totalPages);
-        statusLabel.setText("Progres tersimpan otomatis");
     }
 
     /** Halaman selalu diskalakan agar pas dengan area baca. */

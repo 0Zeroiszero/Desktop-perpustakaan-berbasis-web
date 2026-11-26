@@ -18,7 +18,10 @@
         <HBox styleClass="reader-top" alignment="CENTER_LEFT" spacing="12">
             <Button fx:id="backButton" text="Kembali" styleClass="reader-button" onAction="#handleBack"/>
             <VBox spacing="1">
-                <Label fx:id="bookTitleLabel" text="Memuat buku..." styleClass="reader-title"/>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label fx:id="bookTitleLabel" text="Memuat buku..." styleClass="reader-title"/>
+                    <Label fx:id="statusLabel" text="" styleClass="badge badge-purple"/>
+                </HBox>
                 <Label fx:id="bookAuthorLabel" text="" styleClass="reader-author"/>
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
@@ -40,7 +43,6 @@
             <ProgressBar fx:id="pageProgress" styleClass="reader-slider" HBox.hgrow="ALWAYS"
                          maxWidth="Infinity" prefHeight="8"/>
             <Label fx:id="percentLabel" text="0%" styleClass="reader-percent"/>
-            <Label fx:id="statusLabel" text="Progres tersimpan otomatis" styleClass="reader-status"/>
         </HBox>
     </bottom>
 </BorderPane>

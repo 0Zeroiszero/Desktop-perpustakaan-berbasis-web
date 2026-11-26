@@ -14,7 +14,8 @@ Test yang dijalankan surefire:
 | `UiSmokeTest` | semua FXML dimuat, CSS terpasang, data halaman muncul, validasi form, lalu menjalankan shell aplikasi sungguhan dan berpindah ke delapan halaman admin/anggota sambil mengambil screenshot |
 | `UserScenarioTest` | delapan operasi CRUD lewat klik UI sungguhan, menghitung klik per operasi, dan memastikan tidak lebih dari 3 klik |
 | `ReadingRuleTest` | status hanya label; `Telah dibaca` memaksa halaman terakhir ke 100%; status lain tidak mengubah progres; cover otomatis dibuat |
-| `ProfileController` | halaman profil penulis/penerbit/genre diuji melalui `UiSmokeTest` |
+| `ProfileLookupTest` | tombol `!` membaca profil penulis/penerbit/genre tanpa error query |
+| `ProfileController` | isi popup profil diuji melalui `UiSmokeTest` |
 
 `UiScreenshotTest` tetap dikecualikan dari surefire; ia hanya alat bantu visual manual.
 
