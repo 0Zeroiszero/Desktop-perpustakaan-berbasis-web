@@ -6,6 +6,8 @@ logs/
 database/backup/
 *.log
 .DS_Store
+node_modules/
+dist/
 
 # Artefak database lama db_pustaka; sumber kebenaran adalah optl_pustaka (proyek web)
 database/db_pustaka.sql
