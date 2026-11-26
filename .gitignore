@@ -8,6 +8,9 @@ database/backup/
 .DS_Store
 node_modules/
 dist/
+__pycache__/
+*.pyc
+*.tsbuildinfo
 
 # Artefak database lama db_pustaka; sumber kebenaran adalah optl_pustaka (proyek web)
 database/db_pustaka.sql
