@@ -225,3 +225,43 @@
     -fx-background-radius: 10;
 }
 
+/* Popup profil penulis, penerbit, dan genre */
+.profile-meta {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 12px;
+}
+
+.profile-count {
+    -fx-text-fill: #7C3AED;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.profile-bio {
+    -fx-text-fill: #4B5563;
+    -fx-font-size: 13px;
+}
+
+.profile-book-row {
+    -fx-background-color: #F8F5FF;
+    -fx-background-radius: 10;
+    -fx-border-color: #EDE9FE;
+    -fx-border-radius: 10;
+    -fx-padding: 6 8 6 8;
+}
+
+.profile-thumb {
+    -fx-effect: dropshadow(gaussian, rgba(30, 27, 75, 0.16), 5, 0, 0, 1);
+}
+
+.profile-book-title {
+    -fx-text-fill: #1E1B4B;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.profile-book-year {
+    -fx-text-fill: #7C3AED;
+    -fx-font-size: 11px;
+}
+

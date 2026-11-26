@@ -17,12 +17,12 @@
 
     <VBox spacing="4">
         <Label fx:id="namaLabel" text="Nama" styleClass="detail-title" wrapText="true"/>
-        <Label fx:id="identitasLabel" text="" styleClass="detail-meta" wrapText="true"/>
-        <Label fx:id="keteranganLabel" text="" styleClass="detail-meta" wrapText="true"/>
-        <Label fx:id="jumlahLabel" text="0 buku" styleClass="detail-meta"/>
+        <Label fx:id="identitasLabel" text="" styleClass="profile-meta" wrapText="true"/>
+        <Label fx:id="keteranganLabel" text="" styleClass="profile-meta" wrapText="true"/>
+        <Label fx:id="jumlahLabel" text="0 buku" styleClass="profile-count"/>
     </VBox>
 
-    <Label fx:id="bioLabel" text="" styleClass="synopsis-text" wrapText="true"/>
+    <Label fx:id="bioLabel" text="" styleClass="profile-bio" wrapText="true"/>
 
     <Label text="Koleksi terkait" styleClass="dashboard-section-title"/>
     <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="profile-scroll">

@@ -39,6 +39,7 @@ public final class ProfileDialog {
         dialog.getDialogPane().setContent(content);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
         DialogUtil.configureFormDialog(dialog, owner, 720, 520);
+        DialogUtil.stylePrimaryButton(dialog.getDialogPane(), ButtonType.CLOSE, false);
         dialog.showAndWait();
     }
 }
