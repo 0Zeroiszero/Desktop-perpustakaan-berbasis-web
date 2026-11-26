@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="form-root" spacing="8"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.admin.UserFormController">
+    <padding>
+        <Insets top="16" right="20" bottom="14" left="20"/>
+    </padding>
+    <Label fx:id="formTitle" text="Tambah Pengguna" styleClass="form-title"/>
+    <Label fx:id="passwordHint" text="Password minimal 8 karakter." styleClass="form-subtitle" wrapText="true"/>
+    <HBox alignment="CENTER_LEFT" spacing="4">
+        <Label text="*" styleClass="required-star"/>
+        <Label text="Wajib diisi" styleClass="required-hint"/>
+    </HBox>
+    <Label fx:id="errorLabel" styleClass="form-error" wrapText="true"/>
+
+    <GridPane hgap="12" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+        </columnConstraints>
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <HBox alignment="BASELINE_LEFT" spacing="3">
+                <Label text="Email" styleClass="field-label"/>
+                <Label text="*" styleClass="required-star"/>
+            </HBox>
+            <TextField fx:id="emailField" styleClass="text-field" promptText="nama@email.com"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <HBox alignment="BASELINE_LEFT" spacing="3">
+                <Label text="Nama lengkap" styleClass="field-label"/>
+                <Label text="*" styleClass="required-star"/>
+            </HBox>
+            <TextField fx:id="displayNameField" styleClass="text-field" promptText="Nama lengkap pengguna"/>
+        </VBox>
+
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <HBox alignment="BASELINE_LEFT" spacing="3">
+                <Label text="Role" styleClass="field-label"/>
+                <Label text="*" styleClass="required-star"/>
+            </HBox>
+            <ComboBox fx:id="roleCombo" styleClass="combo-box" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <HBox alignment="BASELINE_LEFT" spacing="3">
+                <Label text="Password" styleClass="field-label"/>
+                <Label fx:id="passwordRequiredMark" text="*" styleClass="required-star"/>
+            </HBox>
+            <PasswordField fx:id="passwordField" styleClass="text-field" promptText="Minimal 8 karakter"/>
+        </VBox>
+    </GridPane>
+</VBox>

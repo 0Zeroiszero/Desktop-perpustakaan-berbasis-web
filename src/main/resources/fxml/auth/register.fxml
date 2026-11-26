@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox styleClass="auth-root" alignment="CENTER" spacing="24"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.auth.RegisterController">
+    <padding>
+        <Insets top="16" right="28" bottom="16" left="28"/>
+    </padding>
+
+    <VBox styleClass="auth-hero" prefWidth="340" maxWidth="360" minWidth="310" maxHeight="700" spacing="14">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <StackPane styleClass="brand-mark" minWidth="42" minHeight="42" prefWidth="42" prefHeight="42"
+                       maxWidth="42" maxHeight="42">
+                <Label text="P" styleClass="brand-letter"/>
+            </StackPane>
+            <VBox spacing="0">
+                <Label text="PustakaDigital" styleClass="auth-hero-brand"/>
+                <Label text="Perpustakaan digital" styleClass="auth-hero-brand-sub"/>
+            </VBox>
+        </HBox>
+
+        <Region prefHeight="10"/>
+        <Label text="Mulai kebiasaan&#10;membaca hari ini."
+               styleClass="auth-register-hero-title" wrapText="true"/>
+        <Label text="Buat akun untuk menyimpan koleksi pilihan dan melanjutkan bacaan kapan saja."
+               styleClass="auth-hero-text" wrapText="true"/>
+
+        <Region prefHeight="6"/>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="&#10003;" styleClass="auth-feature-check"/>
+            <Label text="Katalog e-book yang tertata rapi" styleClass="auth-feature-text" wrapText="true"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="&#10003;" styleClass="auth-feature-check"/>
+            <Label text="Rak baca pribadi dan progres otomatis" styleClass="auth-feature-text" wrapText="true"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="&#10003;" styleClass="auth-feature-check"/>
+            <Label text="Pembaca PDF langsung di aplikasi" styleClass="auth-feature-text" wrapText="true"/>
+        </HBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+        <Label text="Gratis digunakan untuk seluruh anggota perpustakaan."
+               styleClass="auth-hero-note" wrapText="true"/>
+    </VBox>
+
+    <VBox styleClass="auth-panel" prefWidth="560" maxWidth="600" maxHeight="700" spacing="8">
+        <padding>
+            <Insets top="22" right="26" bottom="18" left="26"/>
+        </padding>
+        <Label text="Buat akun anggota" styleClass="auth-title"/>
+        <Label text="Lengkapi data berikut untuk mulai menjelajahi koleksi perpustakaan."
+               styleClass="auth-subtitle" wrapText="true"/>
+
+        <HBox alignment="CENTER_LEFT" spacing="4">
+            <Label text="*" styleClass="required-star"/>
+            <Label text="Wajib diisi" styleClass="required-hint"/>
+        </HBox>
+
+        <Label fx:id="errorLabel" styleClass="auth-error" wrapText="true"/>
+
+        <GridPane styleClass="auth-form-grid" hgap="16" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS">
+                <HBox alignment="BASELINE_LEFT" spacing="3">
+                    <Label text="Email" styleClass="auth-field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="emailField" styleClass="auth-input" promptText="nama@email.com"/>
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS">
+                <HBox alignment="BASELINE_LEFT" spacing="3">
+                    <Label text="Nama lengkap" styleClass="auth-field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="displayNameField" styleClass="auth-input" promptText="Nama sesuai identitas"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS">
+                <HBox alignment="BASELINE_LEFT" spacing="3">
+                    <Label text="Password" styleClass="auth-field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <PasswordField fx:id="passwordField" styleClass="auth-input" promptText="Minimal 8 karakter"/>
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS">
+                <HBox alignment="BASELINE_LEFT" spacing="3">
+                    <Label text="Konfirmasi password" styleClass="auth-field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <PasswordField fx:id="confirmPasswordField" styleClass="auth-input" promptText="Ulangi password"/>
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <ProgressIndicator fx:id="registerProgress" prefWidth="18" prefHeight="18"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Hyperlink text="Sudah punya akun? Masuk" styleClass="auth-link" onAction="#handleBack"/>
+            <Button fx:id="registerButton" text="Daftar Sekarang" styleClass="btn-primary auth-button"
+                    disable="true" minWidth="158" onAction="#handleRegister"/>
+        </HBox>
+    </VBox>
+</HBox>

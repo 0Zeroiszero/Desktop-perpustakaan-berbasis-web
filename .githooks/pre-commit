@@ -1,0 +1,5 @@
+#!/bin/sh
+# Dijalankan sebelum commit. Proyek ini Java/Maven, bukan Node,
+# jadi pengganti husky + typecheck + test adalah test suite Maven.
+# //c mencegah Git for Windows menerjemahkan /c menjadi path.
+exec cmd.exe //c mvnw.cmd -q test
