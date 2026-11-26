@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="form-root" spacing="10"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.catalog.ProfileController">
+    <padding>
+        <Insets top="14" right="18" bottom="14" left="18"/>
+    </padding>
+
+    <Label fx:id="jenisLabel" text="Profil" styleClass="badge badge-purple"/>
+
+    <VBox spacing="4">
+        <Label fx:id="namaLabel" text="Nama" styleClass="detail-title" wrapText="true"/>
+        <Label fx:id="identitasLabel" text="" styleClass="profile-meta" wrapText="true"/>
+        <Label fx:id="keteranganLabel" text="" styleClass="profile-meta" wrapText="true"/>
+        <Label fx:id="jumlahLabel" text="0 buku" styleClass="profile-count"/>
+    </VBox>
+
+    <Label fx:id="bioLabel" text="" styleClass="profile-bio" wrapText="true"/>
+
+    <Label text="Koleksi terkait" styleClass="dashboard-section-title"/>
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="profile-scroll">
+        <content>
+            <VBox fx:id="booksBox" spacing="10">
+                <padding>
+                    <Insets bottom="12"/>
+                </padding>
+            </VBox>
+        </content>
+    </ScrollPane>
+</VBox>

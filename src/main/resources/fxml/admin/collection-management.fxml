@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="page-root" spacing="12"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.admin.CollectionManagementController">
+    <TabPane styleClass="form-tabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Buku">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="12" right="12" bottom="12" left="12"/>
+                </padding>
+                <HBox styleClass="page-toolbar" alignment="CENTER_LEFT" spacing="8">
+                    <TextField fx:id="bookSearchField" styleClass="text-field" promptText="Cari judul / ISBN..."
+                               prefWidth="200"/>
+                    <ComboBox fx:id="bookCategoryCombo" styleClass="combo-box" prefWidth="150"/>
+                    <ComboBox fx:id="bookSortCombo" styleClass="combo-box" prefWidth="120"/>
+                    <Button text="Muat ulang" styleClass="btn-ghost" minWidth="110"
+                            onAction="#handleRefreshBooks"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="bookResultLabel" text="0 buku ditemukan" styleClass="muted"/>
+                    <Button fx:id="bookAddButton" text="Tambah Buku" styleClass="btn-primary"
+                            minWidth="130" onAction="#handleAddBook"/>
+                </HBox>
+                <TableView fx:id="booksTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="coverColumn" text="Cover" prefWidth="60"/>
+                        <TableColumn fx:id="bookTitleColumn" text="Judul" prefWidth="230"/>
+                        <TableColumn fx:id="bookAuthorColumn" text="Penulis" prefWidth="190"/>
+                        <TableColumn fx:id="bookCategoryColumn" text="Kategori" prefWidth="120"/>
+                        <TableColumn fx:id="pagesColumn" text="Halaman" prefWidth="90"/>
+                        <TableColumn fx:id="bookActionsColumn" text="Aksi" prefWidth="90"/>
+                    </columns>
+                </TableView>
+                <HBox fx:id="bookPaginationBox" alignment="CENTER" spacing="8"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Penulis">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="12" right="12" bottom="12" left="12"/>
+                </padding>
+                <HBox styleClass="page-toolbar" alignment="CENTER_LEFT" spacing="8">
+                    <TextField fx:id="authorSearchField" styleClass="text-field" promptText="Cari nama atau negara..."
+                               prefWidth="300"/>
+                    <Button text="Muat ulang" styleClass="btn-ghost" minWidth="110"
+                            onAction="#handleRefreshAuthors"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="authorResultLabel" text="0 penulis ditemukan" styleClass="muted"/>
+                    <Button fx:id="authorAddButton" text="Tambah Penulis" styleClass="btn-primary"
+                            minWidth="140" onAction="#handleAddAuthor"/>
+                </HBox>
+                <TableView fx:id="authorsTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="authorNameColumn" text="Nama Penulis" prefWidth="280"/>
+                        <TableColumn fx:id="countryColumn" text="Negara Asal" prefWidth="180"/>
+                        <TableColumn fx:id="authorBooksColumn" text="Buku" prefWidth="90"/>
+                        <TableColumn fx:id="authorActionsColumn" text="Aksi" prefWidth="90"/>
+                    </columns>
+                </TableView>
+                <HBox fx:id="authorPaginationBox" alignment="CENTER" spacing="8"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Kategori">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="12" right="12" bottom="12" left="12"/>
+                </padding>
+                <HBox styleClass="page-toolbar" alignment="CENTER_LEFT" spacing="8">
+                    <TextField fx:id="kategoriSearchField" styleClass="text-field" promptText="Cari kategori..."
+                               prefWidth="300"/>
+                    <Button text="Muat ulang" styleClass="btn-ghost" minWidth="110"
+                            onAction="#handleRefreshKategori"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="kategoriResultLabel" text="0 kategori ditemukan" styleClass="muted"/>
+                    <Button fx:id="kategoriAddButton" text="Tambah Kategori" styleClass="btn-primary"
+                            minWidth="150" onAction="#handleAddKategori"/>
+                </HBox>
+                <TableView fx:id="kategoriTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="kategoriNamaColumn" text="Nama Kategori" prefWidth="240"/>
+                        <TableColumn fx:id="kategoriDeskripsiColumn" text="Deskripsi" prefWidth="430"/>
+                        <TableColumn fx:id="kategoriJumlahColumn" text="Jumlah Buku" prefWidth="110"/>
+                        <TableColumn fx:id="kategoriActionsColumn" text="Aksi" prefWidth="90"/>
+                    </columns>
+                </TableView>
+                <HBox fx:id="kategoriPaginationBox" alignment="CENTER" spacing="8"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

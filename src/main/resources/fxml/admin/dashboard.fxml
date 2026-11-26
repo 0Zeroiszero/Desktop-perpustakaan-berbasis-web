@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="form-root" spacing="12"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.perpustakaan.controller.admin.AdminDashboardController">
+    <padding>
+        <Insets top="14" right="18" bottom="14" left="18"/>
+    </padding>
+
+    <HBox styleClass="welcome-banner" alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="2" HBox.hgrow="ALWAYS">
+            <Label fx:id="welcomeLabel" text="Selamat datang, Admin." styleClass="welcome-title"/>
+            <Label fx:id="welcomeSubtitle" text="Berikut ringkasan koleksi perpustakaan." styleClass="welcome-subtitle"/>
+        </VBox>
+        <Button fx:id="addBookButton" text="Tambah Buku" styleClass="banner-action" onAction="#handleAddBook"
+                style="-fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.30);"/>
+        <Button fx:id="manageUsersButton" text="Kelola Pengguna" styleClass="banner-action" onAction="#handleManageUsers"
+                style="-fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.30);"/>
+        <Button fx:id="openCatalogButton" text="Lihat Katalog" styleClass="banner-action" onAction="#handleOpenCatalog"
+                style="-fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.30);"/>
+    </HBox>
+
+    <HBox fx:id="statsRow" styleClass="stats-row" spacing="12"/>
+
+    <GridPane fx:id="summaryGrid" hgap="12" vgap="12" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+        </columnConstraints>
+    </GridPane>
+</VBox>
